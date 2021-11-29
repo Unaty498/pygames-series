@@ -12,6 +12,10 @@ Puis, choisissez où vous voulez aller.
 
 ![image](https://souna.xyz/images/click.png)
 
+Pour télécharger le code :
+
+![image](https://souna.xyz/images/pour_telecharger.png)
+
 <div align="center">
   <a href="https://discord.gg/FG69qwnt3w">
     <img src="https://user-images.githubusercontent.com/59381835/92191514-d649ad80-ee18-11ea-9bc4-e95c7a122a99.png" width="80"/>
