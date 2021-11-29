@@ -29,14 +29,7 @@ class AnimateSprite(pygame.sprite.Sprite):
             self.clock = 0
 
     def get_images(self, y):
-        images = []
-
-        for i in range(0, 3):
-            x = i*32
-            image = self.get_image(x, y)
-            images.append(image)
-
-        return images
+        return [self.get_image(x*32, y).convert_alpha() for x in range(4)]
 
     def get_image(self, x, y):
         image = pygame.Surface([32, 32])

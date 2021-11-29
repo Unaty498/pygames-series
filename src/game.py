@@ -12,7 +12,7 @@ class Game:
         # Game screen
         flags = pygame.NOFRAME | pygame.FULLSCREEN | pygame.SCALED
         self.screen = pygame.display.set_mode((800, 600), flags, vsync=1)
-        pygame.display.set_caption('tuto - prod')
+        pygame.display.set_caption('Game')
 
         # Create the player
         self.player = Player()
@@ -21,17 +21,19 @@ class Game:
 
     def handle_input(self):
         pressed = pygame.key.get_pressed()
-
+        inputs = pygame.Vector2(0, 0)
         if pressed[pygame.K_ESCAPE]:
             self.running = False
-        elif pressed[pygame.K_z]:
-            self.player.move_up()
-        elif pressed[pygame.K_s]:
-            self.player.move_down()
-        elif pressed[pygame.K_d]:
-            self.player.move_right()
-        elif pressed[pygame.K_q]:
-            self.player.move_left()
+        if pressed[pygame.K_z]:
+            inputs.y -= 1
+        if pressed[pygame.K_s]:
+            inputs.y += 1
+        if pressed[pygame.K_d]:
+            inputs.x += 1
+        if pressed[pygame.K_q]:
+            inputs.x -= 1
+        if inputs.magnitude() != 0:
+            self.player.move(inputs)
 
     def update(self):
         self.map_manager.update()

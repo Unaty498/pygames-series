@@ -1,5 +1,8 @@
 from dataclasses import dataclass
-import pygame, pytmx, pyscroll
+
+import pygame
+import pyscroll
+import pytmx
 
 from src.entities import NPC
 
@@ -128,4 +131,4 @@ class MapManager:
         self.check_collisions()
 
         for npc in self.get_map().npcs:
-            npc.move()
+            npc.target_point()
