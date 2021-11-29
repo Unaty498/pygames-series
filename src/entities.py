@@ -19,9 +19,10 @@ class Entity(AnimateSprite):
     def move(self, inputs: pygame.Vector2):
         if inputs.magnitude() == 0:
             self.image = self.images['down'][1]
-            self.image.convert_alpha()
+            self.image.set_colorkey(0, 0)
         else:
-            movement = (pygame.math.Vector2(inputs) * self.speed)
+            direction = inputs.normalize()
+            movement = pygame.Vector2(round(direction.x), round(direction.y))
             self.change_animation('down' if movement.y > 0 and movement.y > abs(movement.x) else ('up' if movement.y < 0 and movement.y < -abs(movement.x) else ('left' if movement.x < 0 else 'right')))
             self.position += movement
 

@@ -32,8 +32,7 @@ class Game:
             inputs.x += 1
         if pressed[pygame.K_q]:
             inputs.x -= 1
-        if inputs.magnitude() != 0:
-            self.player.move(inputs)
+        self.player.move(inputs)
 
     def update(self):
         self.map_manager.update()
