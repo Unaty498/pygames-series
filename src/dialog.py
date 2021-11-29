@@ -3,12 +3,12 @@ import pygame
 
 class DialogBox:
     def __init__(self):
-        self.box = pygame.image.load('./dialogs/dialog_box.png')
+        self.box = pygame.image.load('../dialogs/dialog_box.png')
         self.box = pygame.transform.scale(self.box, (700, 100))
         self.texts = []
         self.text_index = 0
         self.letter_index = 0
-        self.font = pygame.font.Font('./dialogs/dialog_font.ttf', 18)
+        self.font = pygame.font.Font('../dialogs/dialog_font.ttf', 18)
         self.reading = False
         self.Y_POSITION = pygame.display.get_surface().get_height() - self.box.get_height()
         self.X_POSITION = pygame.display.get_surface().get_width() - self.box.get_width()

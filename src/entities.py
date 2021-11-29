@@ -30,7 +30,7 @@ class Entity(AnimateSprite):
 
     def move_down(self):
         self.change_animation('down')
-        self.position[] += self.speed
+        self.position[1] += self.speed
 
     def update(self):
         self.rect.topleft = self.position
