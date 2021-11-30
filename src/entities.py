@@ -47,9 +47,9 @@ class Player(Entity):
 
 
 class NPC(Entity):
-    def __init__(self, name, pathPointsCount, dialog):
+    def __init__(self, name, path_points_count, dialog):
         super().__init__(name, 0, 0)
-        self.pathPointsCount = pathPointsCount
+        self.path_points_count = path_points_count
         self.dialog = dialog
         self.points: list[pygame.Vector2] = []
         self.name = name
@@ -59,7 +59,7 @@ class NPC(Entity):
     def target_point(self):
         target_point = self.current_point + 1
 
-        if target_point >= self.pathPointsCount:
+        if target_point >= self.path_points_count:
             target_point = 0
 
         point_pos = self.points[target_point]
@@ -75,7 +75,7 @@ class NPC(Entity):
         self.save_location()
 
     def load_points(self, tmx_data):
-        for num in range(1, self.pathPointsCount + 1):
+        for num in range(1, self.path_points_count + 1):
             point = tmx_data.get_object_by_name(f'{self.name}_path{num}')
             position = pygame.Vector2(point.x, point.y)
             self.points.append(position)

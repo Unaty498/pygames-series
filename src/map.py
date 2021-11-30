@@ -36,7 +36,7 @@ class MapManager:
         self.register_map('world', portals=[
             Portal(from_world='world', origin_point='enter_house1', target_world='house', teleport_point='spawn_house')
         ], npcs=[
-            NPC('robin', pathPointsCount=4, dialog=['Bonjour !', 'J\'espère que tu t\'amuses bien !'])
+            NPC('robin', path_points_count=4, dialog=['Bonjour !', 'J\'espère que tu t\'amuses bien !'])
         ])
 
         self.register_map('house', portals=[
@@ -95,7 +95,7 @@ class MapManager:
                 walls.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))
 
         # Draw the different layers
-        group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=6)
+        group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=4)
         group.add(self.player)
 
         # Get all NPC to add them to the group
@@ -128,6 +128,7 @@ class MapManager:
 
     def update(self):
         self.get_group().update()
+        #self.check_npc_collisions()
         self.check_collisions()
 
         for npc in self.get_map().npcs:
