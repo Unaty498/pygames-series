@@ -105,13 +105,17 @@ class MapManager:
         # Create an object map
         self.maps[name] = Map(name, walls, group, tmx_data, portals, npcs)
 
-    def get_map(self): return self.maps[self.current_map]
+    def get_map(self):
+        return self.maps[self.current_map]
 
-    def get_group(self): return self.get_map().group
+    def get_group(self):
+        return self.get_map().group
 
-    def get_walls(self): return self.get_map().walls
+    def get_walls(self):
+        return self.get_map().walls
 
-    def get_object(self, name): return self.get_map().tmx_data.get_object_by_name(name)
+    def get_object(self, name):
+        return self.get_map().tmx_data.get_object_by_name(name)
 
     def teleport_npcs(self):
         for map in self.maps:
@@ -128,7 +132,7 @@ class MapManager:
 
     def update(self):
         self.get_group().update()
-        #self.check_npc_collisions()
+        # self.check_npc_collisions()
         self.check_collisions()
 
         for npc in self.get_map().npcs:
