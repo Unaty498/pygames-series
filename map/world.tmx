@@ -366,9 +366,9 @@
   <object id="39" name="exit_house1" x="511.455" y="480.909">
    <point/>
   </object>
-  <object id="42" name="robin_path1" x="352" y="432" width="16" height="15.75"/>
-  <object id="43" name="robin_path2" x="448" y="432" width="15.8182" height="15.6364"/>
-  <object id="44" name="robin_path3" x="448" y="528" width="15.6364" height="16.3636"/>
-  <object id="45" name="robin_path4" x="352" y="528" width="15.4545" height="15.6364"/>
+  <object id="42" name="robin_path1" x="352" y="448" width="16" height="15.75"/>
+  <object id="43" name="robin_path2" x="448" y="448" width="15.8182" height="15.6364"/>
+  <object id="44" name="robin_path3" x="448" y="512" width="15.6364" height="16.3636"/>
+  <object id="45" name="robin_path4" x="352" y="512" width="15.4545" height="15.6364"/>
  </objectgroup>
 </map>

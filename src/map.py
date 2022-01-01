@@ -28,7 +28,7 @@ class Map:
 class MapManager:
 
     def __init__(self, screen, player):
-        self.maps = {}  # 'house' -> Map('house', walls, group, tmx_data, portals)
+        self.maps: dict[Map] = {}  # 'house' -> Map('house', walls, group, tmx_data, portals)
         self.screen = screen
         self.player = player
         self.current_map = 'world'
@@ -105,7 +105,7 @@ class MapManager:
         # Create an object map
         self.maps[name] = Map(name, walls, group, tmx_data, portals, npcs)
 
-    def get_map(self):
+    def get_map(self) -> Map:
         return self.maps[self.current_map]
 
     def get_group(self):
@@ -118,8 +118,8 @@ class MapManager:
         return self.get_map().tmx_data.get_object_by_name(name)
 
     def teleport_npcs(self):
-        for map in self.maps:
-            map_data = self.maps[map]
+        for m in self.maps:
+            map_data = self.maps[m]
             npcs = map_data.npcs
 
             for npc in npcs:
