@@ -3,6 +3,14 @@ import pygame
 from src.animation import AnimateSprite
 
 
+def vector_equals(v1: pygame.Vector2, v2: pygame.Vector2) -> bool:
+    return v1.x == v2.x and v1.y == v2.y
+
+
+def get_animation_name(direction: pygame.Vector2):
+    return 'down' if direction.y > 0 and direction.y > abs(direction.x) else ('up' if direction.y < 0 and direction.y < -abs(direction.x) else ('left' if direction.x < 0 else 'right'))
+
+
 class Entity(AnimateSprite):
 
     def __init__(self, name, x, y):
@@ -11,19 +19,25 @@ class Entity(AnimateSprite):
         self.image.set_colorkey([0, 0, 0])
         self.rect = self.image.get_rect()
         self.position = pygame.Vector2(x, y)
+        self.current_movement = pygame.Vector2(0, 0)
         self.feet = pygame.Rect(0, 0, self.rect.width * 0.5, 12)
         self.old_position = pygame.Vector2(self.position.x, self.position.y)
 
     def save_location(self): self.old_position = pygame.Vector2(self.position.x, self.position.y)
 
     def move(self, inputs: pygame.Vector2):
-        if inputs.magnitude() == 0:
+        if inputs.magnitude() == 0 and self.current_movement.magnitude() != 0:
+            self.current_movement = pygame.Vector2(0, 0)
             self.image = self.images['down'][1]
             self.image.set_colorkey(0, 0)
-        else:
+        elif inputs.magnitude() != 0:
             direction = inputs.normalize()
             movement = pygame.Vector2(round(direction.x), round(direction.y))
-            self.change_animation('down' if movement.y > 0 and movement.y > abs(movement.x) else ('up' if movement.y < 0 and movement.y < -abs(movement.x) else ('left' if movement.x < 0 else 'right')))
+            if not vector_equals(movement, self.current_movement):
+                self.current_movement = movement
+                if self.current_animation != get_animation_name(movement):
+                    self.change_animation(get_animation_name(movement))
+            self.tick_animation()
             self.position += movement
 
     def update(self):
@@ -53,7 +67,6 @@ class NPC(Entity):
         self.dialog = dialog
         self.points: list[pygame.Vector2] = []
         self.name = name
-        self.speed = 0.50
         self.current_point = 0
 
     def target_point(self):
