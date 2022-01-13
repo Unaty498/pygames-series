@@ -49,7 +49,7 @@ class Entity(AnimateSprite):
         self.update()
 
     def objective_to_direction(self, objective: pygame.math.Vector2):
-        return pygame.math.Vector2(0, 0) if objective == self.position else pygame.math.Vector2(
+        return pygame.math.Vector2(0, 0) if vector_equals(objective, self.position) else pygame.math.Vector2(
             objective.x - self.position.x, objective.y - self.position.y
         ).normalize()
 
